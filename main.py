@@ -1,13 +1,10 @@
 from flask import Flask, jsonify, request
 from pymongo import MongoClient
+from bson import ObjectId
 
 #pip install Flask
 
 app = Flask(__name__)
-
-client = MongoClient("mongodb+srv://fernandoserra:ddNSUUbo1MIhSreQ@force0.7vjgi2i.mongodb.net/?retryWrites=true&w=majority")
-db = client["Force0"]
-collection = db["api_example"]
 
 #documents = [
 #    {
@@ -22,15 +19,22 @@ collection = db["api_example"]
 
 #result = collection.insert_many(documents)
 #print(f"Inserted {len(result.inserted_ids)} documents")
+    #hardcoded
+    #users = [{'id': 1, 'name': 'Bricce'}, {'id': 2, 'name': 'Cardoso'}]
+
+
+client = MongoClient("mongodb+srv://fernandoserra:ddNSUUbo1MIhSreQ@force0.7vjgi2i.mongodb.net/?retryWrites=true&w=majority")
+db = client["Force0"]
+collection = db["api_example"]
+
 
 @app.route('/users', methods=['GET'])
 def get_users():
     users = []
     for user in collection.find():
-        users.append({'id': user['_id'], 'name': user['name']})    
-    #hardcoded
-    #users = [{'id': 1, 'name': 'Bricce'}, {'id': 2, 'name': 'Cardoso'}]
+        users.append({'id': str(user['_id']), 'name': user['name']})
     return jsonify(users)
+
 
 @app.route('/users', methods=['POST'])
 def create_user():
@@ -42,6 +46,7 @@ def create_user():
     # Assuming you have a User model
     new_user = {'id': 3, 'name': name}  # Sample data
     return jsonify({'message': 'User created successfully'})
+
 
 @app.route('/users/<int:user_id>', methods=['PUT'])
 def update_user(user_id):
