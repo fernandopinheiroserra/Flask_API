@@ -22,5 +22,5 @@ Este projeto está sob a licença (sua licença) - veja o arquivo [LICENSE.md](h
 ## 🎁 Expressões de gratidão
 
 * Minha esposa, sempre ❤️
-* Meus amigos Xulicos 🍺
+* Meus amigos Xulicos: [Braicce](https://github.com/Braicce) e [Cardoso] 🍺
 * Para todos aqueles que foram ajudados de alguma forma consultando esse git 🔩
